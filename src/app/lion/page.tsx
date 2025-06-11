@@ -2,9 +2,10 @@ import style from "./lion.module.scss"
 
 export default async function Lion() {
     const QA = [
+
         {
-            question: "Next.js 和 React 有什麼不同?",
-            answer: "Next.js是建立在React之上的框架，提供 SSR、SSG、自動路由、API Routes等功能，適合開發完整網站。"
+            question: "如何處理API串接與畫面切版的流程經驗?",
+            answer: "通常我會先與設計師確認 Figma 樣式，接著用 styled-components或CSS modules實作切版，再依 API 文件串接資料，並使用axios或fetch 搭配 useEffect 管理請求。若資料需複雜處理，我會額外使用狀態管理工具如Redux。"
         },
         {
             question: "Next.js 有哪些渲染方式? 差異是什麼?",
@@ -27,10 +28,6 @@ export default async function Lion() {
             answer: "支援 SSR/SSG 讓搜尋引擎能讀HTML，用 next/head 設定<title>、meta 等SEO資訊"
         },
         {
-            question: "如何建立動態路由?",
-            answer: "用 [].js 命名方式，搭配 getStaticPaths 或 getServerSideProps傳入動態參數。"
-        },
-        {
             question: "什麼是ISR? 你什麼時候會用?",
             answer: "ISR 是「漸進式靜態再生」，使用 getStaticProps加上 revalidate。可以靜態輸出，也可以定時更新內容"
         },
@@ -47,16 +44,8 @@ export default async function Lion() {
             answer: "Middleware 是一層攔截器，在請求進入頁面前先處理，例如登入驗證、地區導向。"
         },
         {
-            question: "TypeScript 開發 React 時，通常如何定義 Props 與 State?",
+            question: "TypeScript 開發 React 時，如何定義 Props 與 State?",
             answer: "使用 interface 或 type 來定義 Props 與 State。"
-        },
-        {
-            question: "如何處理API串接與畫面切版的流程經驗?",
-            answer: "通常我會先與設計師確認 Figma 樣式，接著用 styled-components或CSS modules實作切版，再依 API 文件串接資料，並使用axios或fetch 搭配 useEffect 管理請求。若資料需複雜處理，我會額外使用狀態管理工具如Redux。"
-        },
-        {
-            question: "Docker的使用經驗?",
-            answer: "主要用Docker建立本地開發環境，例如設定Node.js + Nginx容器，確保與部署環境一致。"
         },
         {
             question: "Release 測試與版本管理的經驗?",
@@ -74,7 +63,23 @@ export default async function Lion() {
                 "當某個狀態或 props 改變時：useEffect(() => { ... }, [依賴項]) 可以追蹤變化。",
                 "元件卸載時：useEffect 裡 return 的清理函式就像 componentWillUnmount。",
             ]
-        }
+        },
+        {
+            question: "API 獲取期間的loading怎做",
+            answer: "用react的Suspense 用fallback放入想放的組件或是文字"
+        },
+        {
+            question: "Next.js 和 React 有什麼不同?",
+            answer: "Next.js是建立在React之上的框架，提供 SSR、SSG、自動路由、API Routes等功能，適合開發完整網站。"
+        },
+        {
+            question: "如何建立動態路由?",
+            answer: "用 [slug].js 命名方式，搭配 getStaticPaths 或 getServerSideProps傳入動態參數。"
+        },
+        {
+            question: "Docker的使用經驗?",
+            answer: "主要用Docker建立本地開發環境，例如設定Node.js + Nginx容器，確保與部署環境一致。"
+        },
     ]
 
     return (

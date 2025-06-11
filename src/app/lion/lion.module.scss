@@ -7,12 +7,12 @@
   user-select: none;
 
   .card {
-    width: 33.33%;
+    width: 25%;
     border: 0.2px solid rgba(32, 46, 87, 0.3);
     box-sizing: border-box;
 
     .question {
-      font-size: 18px;
+      font-size: 16px;
       padding: 2px 0;
       color: white;
       background-color: rgb(49, 110, 150);
@@ -21,7 +21,7 @@
       box-sizing: border-box;
 
       span {
-        margin: 0 5px;
+        margin: 0 3px;
       }
     }
 
