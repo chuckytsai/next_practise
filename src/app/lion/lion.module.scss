@@ -1,0 +1,50 @@
+.list {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  user-select: none;
+
+  .card {
+    width: 33.33%;
+    border: 0.2px solid rgba(32, 46, 87, 0.3);
+    box-sizing: border-box;
+
+    .question {
+      font-size: 18px;
+      padding: 2px 0;
+      color: white;
+      background-color: rgb(49, 110, 150);
+      padding-left: 5px;
+      letter-spacing: 0.5px;
+      box-sizing: border-box;
+
+      span {
+        margin: 0 5px;
+      }
+    }
+
+    .answer {
+      font-size: 18px;
+      text-indent: 2em;
+      padding: 10px 5px 5px 5px;
+      line-height: 2em;
+      -webkit-text-stroke: 0.5px #523a09;
+      letter-spacing: 0.5px;
+    }
+
+    .answers {
+      width: 95%;
+      font-size: 16px;
+      margin: 10px 0 0 10px;
+      border-bottom: 1px solid rgb(163, 109, 109);
+      -webkit-text-stroke: 0.5px #070501;
+      letter-spacing: 0.33px;
+    }
+
+    & :last-child {
+      border-bottom: none;
+    }
+  }
+}
