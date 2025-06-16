@@ -1,0 +1,127 @@
+.loginForm {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  form {
+    margin-top: -3.33%;
+
+    label {
+      font-size: 1em;
+    }
+
+    .inputGroup {
+      display: flex;
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      padding: 8px;
+      margin: 7.5px 0;
+      max-width: 400px;
+
+      .inputIcon {
+        margin-right: 8px;
+        display: flex;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+      }
+
+      input {
+        width: 100%;
+        outline: none;
+      }
+
+      input[type="email"] {
+        border: none;
+        outline: none;
+        flex: 1;
+        font-size: 16px;
+      }
+    }
+
+    .msg {
+      margin: 15px 0;
+      display: flex;
+      justify-content: space-between;
+
+      p,
+      a {
+        width: 50%;
+        height: 1.5em;
+        line-height: 1.2em;
+        font-size: 0.9em;
+      }
+
+      & p:first-child {
+        color: red;
+        letter-spacing: 0.5px;
+      }
+
+      & a:last-child {
+        font-weight: 600;
+        text-align: right;
+
+        .forgetPWIcon {
+          border: solid red;
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 3px;
+          transform: rotate(-45deg);
+          margin-bottom: 1px;
+        }
+      }
+    }
+
+    .loginBtn {
+      width: 100%;
+      height: 2.5em;
+      line-height: 2.5em;
+      background-color: #2f353a;
+      border-radius: 4px;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+
+    .helpYou {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 0.5px solid rgb(44, 11, 11, 0.7);
+
+      p {
+        height: 1em;
+        line-height: 1em;
+        margin: 1em 0;
+        font-size: 0.8em;
+
+        .icon {
+          color: white;
+          background-color: rgb(0, 0, 0, );
+          padding: 0.1em 0.45em;
+          line-height: 1em;
+          text-align: center;
+          border-radius: 50%;
+          margin-right: 0.33em;
+        }
+      }
+
+      & p:first-child {
+        font-weight: 600;
+      }
+
+      & p:last-child {
+        letter-spacing: 0.5px;
+
+        a {
+          margin-left: 0.33em;
+          color: #20a8d8;
+        }
+      }
+    }
+  }
+}

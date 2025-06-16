@@ -80,6 +80,10 @@ export default async function Lion() {
             question: "Docker的使用經驗?",
             answer: "主要用Docker建立本地開發環境，例如設定Node.js + Nginx容器，確保與部署環境一致。"
         },
+        {
+            question: "如果每一頁的title都要改變?",
+            answer: "用metaData 改變title或是keywords等多項，next3 則是"
+        },
     ]
 
     return (
