@@ -1,41 +1,57 @@
+'use client'
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "/public/logo/webLogo.png";
 import mail from "/public/iconSvg/mail.svg";
 import lock from "/public/iconSvg/lock.svg";
-import "./login.scss";
+import eyes from "/public/iconSvg/eyes.svg";
+import style from "./login.module.scss";
 
-export default async function LoginPage() {
+export default function LoginPage() {
+    const [isPSD, setIsPSD] = useState(true); // 改變密碼是否顯示
+    const [err, setErr] = useState("");
+
+    const togglePassword = () => setIsPSD((prev) => !prev);
+
+    // 處理登入邏輯，例如呼叫 API 等
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault(); // 阻止重新整理或跳頁
+        setErr("表單送出！");
+    };
+
     return (
-        <main className="loginForm">
-            <form>
-                <div className="logo">
-                    <Image src={logo} alt="logo" />
-                </div>
-                <label htmlFor="email">帳號</label>
-                <div className="inputGroup">
-                    <span className="inputIcon">
+        <main className={style.loginForm}>
+            <form className={style.form} onSubmit={handleSubmit}>
+                <Image src={logo} alt="logo" priority />
+                <label className={style.label} htmlFor="email">帳號</label>
+                <div className={style.inputGroup}>
+                    <span className={style.inputIcon}>
                         <Image src={mail} alt="mail" />
                     </span>
                     <input type="email" id="email" name="email" placeholder="ex-CMS-Admin@hillcorp.com" />
                 </div>
-                <label htmlFor="psd">密碼</label>
-                <div className="inputGroup">
-                    <span className="inputIcon">
-                        <Image src={lock} alt="mail" />
+                <label className={style.label} htmlFor="psd">密碼</label>
+                <div className={style.inputGroup}>
+                    <span className={style.inputIcon}>
+                        <Image src={lock} alt="psd" />
                     </span>
-                    <input type="email" id="psd" name="psd" />
+                    <input type={isPSD ? "password" : "text"} id="psd" name="psd" autoComplete="psd" />
+                    <span className={style.inputIcon}>
+                        <Image src={eyes} alt="eyes" onClick={togglePassword} />
+                    </span>
                 </div>
-                <div className="msg">
-                    <p>密碼需輸入</p>
+                <div className={style.msg}>
+                    <p>{err}</p>
                     <a>忘記密碼
-                        <div className="forgetPWIcon"></div>
+                        <div className={style.forgetPWIcon}></div>
                     </a>
                 </div>
-                <button className="loginBtn" type="submit">登入</button>
-                <div className="helpYou">
+                <button className={style.loginBtn} type="submit">登入</button>
+                <div className={style.helpYou}>
                     <p>
-                        <span className="icon">?</span>
+                        <span className={style.icon}>?</span>
                         登入問題?
                     </p>
                     <p>任何登入相關問題歡迎來信
