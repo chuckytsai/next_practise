@@ -1,0 +1,82 @@
+.sidebar {
+    width: 14.5em;
+    height: 100vh;
+    color: black;
+    overflow-y: scroll;
+    border-right: 1px solid rgb(156, 156, 156, 0.5);
+
+    &::-webkit-scrollbar {
+        height: 2px;
+        width: 5px;
+    }
+
+    &::-webkit-scrollbar-track {
+        border-radius: 0;
+    }
+
+    li {
+
+        p {
+            display: flex;
+            position: relative;
+            font-size: 1.15em;
+            -webkit-text-stroke: 0.3px #0f0381;
+            color: #09042d;
+            height: calc(100vh / (var(--item-count) + 8)); // 動態平均高度
+            line-height: calc(100vh / (var(--item-count) + 8)); // 動態平均高度
+
+            img {
+                width: 25px;
+            }
+
+            .icon {
+                margin: 0 15px 0 10px;
+            }
+
+            .arrow,
+            .trunArrow {
+                position: absolute;
+                top: 50%;
+                right: 10px;
+                transform: translateY(-50%);
+                cursor: pointer;
+                transition: transform 0.5s ease;
+            }
+
+            .trunArrow {
+                transform: translateY(-50%) rotate(90deg);
+            }
+        }
+
+        ul {
+            display: none;
+            padding-left: 50px;
+            line-height: 2em;
+            font-size: 1.05em;
+            letter-spacing: 0.05em;
+            color: rgb(12, 12, 187);
+            -webkit-text-stroke: 0.33px #817ea6;
+        }
+
+        @keyframes active {
+            0% {
+                height: 0;
+                overflow: hidden;
+                background-color: #f1f5fb;
+            }
+
+            100% {
+                height: 2em;
+                opacity: 1;
+            }
+        }
+
+        .active {
+            display: block;
+
+            li {
+                animation: 0.5s active;
+            }
+        }
+    }
+}

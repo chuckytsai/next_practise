@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "/public/logo/webLogo.png";
@@ -10,6 +11,8 @@ import eyes from "/public/iconSvg/eyes.svg";
 import style from "./login.module.scss";
 
 export default function LoginPage() {
+    const router = useRouter();
+
     const [isPSD, setIsPSD] = useState(true); // 改變密碼是否顯示
     const [err, setErr] = useState("");
 
@@ -19,6 +22,7 @@ export default function LoginPage() {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // 阻止重新整理或跳頁
         setErr("表單送出！");
+        router.push("/dashboard"); // 替換成你想跳的路由
     };
 
     return (
@@ -59,7 +63,6 @@ export default function LoginPage() {
                     </p>
                 </div>
             </form>
-            {/* <Footer /> */}
         </main>
     )
 };
