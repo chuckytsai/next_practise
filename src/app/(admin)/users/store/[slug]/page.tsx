@@ -12,8 +12,17 @@ export default function StepPage() {
     const [formValue, setFormValue] = useState({ name: '', email: '', phone: '' });
 
     useEffect(() => {
-        setFormValue({ ...formValue, ...data });
-    }, [slug]);
+        // 初始化特定步驟需要的欄位
+        if (slug === 'personal') {
+            setFormValue(prev => ({ ...prev, name: data.name ?? '' }));
+        } else if (slug === 'contact') {
+            setFormValue(prev => ({
+                ...prev,
+                email: data.email ?? '',
+                phone: data.phone ?? '',
+            }));
+        }
+    }, [slug, data]);
 
     const handleNext = () => {
         updateData(formValue);

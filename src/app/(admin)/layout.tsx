@@ -1,7 +1,8 @@
 'use client'
 
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation"
+import { FormProvider } from '@/context/FormContext';
+import { usePathname } from "next/navigation";
 import styled from "./layout.module.scss";
 import Sidebar from "@/components/Sidebar";
 import CilSpeedometer from "/public/iconSvg/cil-speedometer.svg";
@@ -152,7 +153,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <Sidebar showList={showList} setShowList={setShowList} menu={menu} />
             <div className={styled.content}>
                 <header>{title}</header>
-                <div className={styled.router}>{children}</div>
+                <div className={styled.router}><FormProvider>{children}</FormProvider></div>
             </div>
         </main>
     );
