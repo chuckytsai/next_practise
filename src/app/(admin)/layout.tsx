@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation"
 import styled from "./layout.module.scss";
 import Sidebar from "@/components/Sidebar";
 import CilSpeedometer from "/public/iconSvg/cil-speedometer.svg";
@@ -122,14 +123,36 @@ const menu = [
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname();
     const [showList, setShowList] = useState<number[]>([]); // 菜單是否顯示子清單
+    const [title, setTitle] = useState("");
+
+    useEffect(() => {
+        // 判斷是否要展開子清單(重新整理,至少是當前頁面的)
+        const urlIdx = menu.findIndex((item) => item.url === pathname.split("/")[1]);
+        if (urlIdx !== -1 && !showList.includes(urlIdx)) setShowList(prev => [...prev, urlIdx]);
+
+        // header上的標題
+        if (pathname.split("/")[2]) {
+            const titleIdx = menu[urlIdx].list.findIndex((item) => item.url === pathname.split("/")[2])
+            setTitle(menu[urlIdx].list[titleIdx].title);
+        }
+        else {
+            setTitle(menu[urlIdx].title);
+        }
+
+        // 自動滾動到該菜單位置
+        const selectedEl = document.querySelector(`.${styled.selected}`);
+        if (selectedEl) selectedEl.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    }, [pathname, showList, setShowList, setTitle]);
 
     return (
         <main className={styled.main}>
             <Sidebar showList={showList} setShowList={setShowList} menu={menu} />
             <div className={styled.content}>
-                <nav></nav>
-                <div className={styled.page}>{children}</div>
+                <header>{title}</header>
+                <div className={styled.router}>{children}</div>
             </div>
         </main>
     );
