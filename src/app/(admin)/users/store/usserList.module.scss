@@ -1,0 +1,60 @@
+.userList {
+
+    .storeList {
+        width: 23%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px 0;
+
+        p,
+        button,
+        ul {
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        p {
+            height: 50px;
+            font-size: 1em;
+            padding-left: 20px;
+            line-height: 50px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.85);
+            background-color: #e6ebef;
+            letter-spacing: 0.5px;
+
+            border-radius: 4px;
+
+            span {
+                margin-left: 10px;
+            }
+        }
+
+        button {
+            border: 1px solid;
+        }
+
+        ul {
+            li {
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                margin-bottom: 3px;
+
+                input {
+                    width: 15px;
+                    height: 17px;
+                    line-height: 0px;
+                    font-size: 0.8em;
+                    border: 1px solid #5b5b5b;
+                    border-radius: 3px;
+                    font-weight: 800;
+                    margin-right: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

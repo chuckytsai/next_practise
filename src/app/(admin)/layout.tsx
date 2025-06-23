@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from "react";
 import { FormProvider } from '@/context/FormContext';
@@ -133,16 +133,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         const urlIdx = menu.findIndex((item) => item.url === pathname.split("/")[1]);
         if (urlIdx !== -1 && !showList.includes(urlIdx)) setShowList(prev => [...prev, urlIdx]);
 
-        // header上的標題根據URL判斷顯示中文字
-        const segments = pathname.split("/").filter(Boolean);
-        const secondSegment = segments[2];
-        const fallbackTitle = menu[urlIdx].title;
-
-        if (secondSegment) {
-            const titleItem = menu[urlIdx].list.find(item => item.url === secondSegment);
-            setTitle(titleItem?.title ?? fallbackTitle);
-        } else {
-            setTitle(fallbackTitle);
+        // header上的標題
+        if (pathname.split("/")[2]) {
+            const titleIdx = menu[urlIdx].list.findIndex((item) => item.url === pathname.split("/")[2])
+            setTitle(menu[urlIdx].list[titleIdx].title);
+        }
+        else {
+            setTitle(menu[urlIdx].title);
         }
 
         // 自動滾動到該菜單位置
@@ -155,7 +152,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main className={styled.main}>
             <Sidebar showList={showList} setShowList={setShowList} menu={menu} />
             <div className={styled.content}>
-                <header>{title}</header>
+                <header>
+                    <p>{title}</p>
+                </header>
                 <div className={styled.router}><FormProvider>{children}</FormProvider></div>
             </div>
         </main>

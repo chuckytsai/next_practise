@@ -1,0 +1,41 @@
+.table {
+    width: 100%;
+    border: 0.5px solid #c8ced3;
+    border-spacing: 0;
+    table-layout: fixed;
+
+    th,
+    td {
+        padding-left: 10px;
+        border: 0.5px solid #c8ced3;
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background-color: #e7ebef;
+
+        th {
+            height: 2.5em;
+            text-align: left;
+        }
+    }
+
+    tbody {
+        td {
+            height: 3em;
+
+            .btns {
+                width: calc(100% - 10px); //減回每個表格的padding-left
+                display: flex;
+                justify-content: center;
+
+                button {
+                    margin: 0 5px;
+                }
+            }
+
+        }
+    }
+}
