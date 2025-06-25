@@ -1,32 +1,52 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import style from "./usserList.module.scss";
 import PageTable from "@/components/PageTable";
 import { getUsers } from "@/services/userService";
+import { Title } from "@/components/PageTable";
 
-const titles = [
-    { label: "帳號", value: "user_account" },
-    { label: "職位權限", value: "user_group_name" },
-    { label: "使用者", value: "user_name" },
-    { label: "操作", value: "operate" }
-]
+interface UserItem {
+    user_account: string;
+    user_group: number;
+    user_name: string;
+};
+
+const titles: Title<UserItem>[] = [
+    {
+        label: "帳號", value: "user_account"
+    },
+    {
+        label: "職位權限", value: "user_group", render: (row: UserItem) => (
+            <>
+                {row.user_group == 1 ? "管理者" : "一般"}
+            </>
+        )
+    },
+    {
+        label: "使用者", value: "user_name"
+    },
+    {
+        label: "操作", value: "operate", render: () => (
+            <div className={style.btns}>
+                <button className="btn indigoBtn">編輯</button>
+                <button className="btn scarletBtn">刪除</button>
+            </div>
+        )
+    }
+];
 
 export default function UserList() {
     const [list, setList] = useState([]);
 
-    useEffect(() => {
-
-    }, []);
-
     const getList = async () => {
+        setList([]);
         getUsers()
             .then(res => {
-                console.log(titles)
                 setList(res.data.data);
             })
             .catch(err => console.error("Failed to fetch users", err));
-    }
+    };
 
     return (
         <div className={`listContent ${style.userList}`}>
@@ -60,11 +80,11 @@ export default function UserList() {
                         </div>
                     </div>
                     <div className="functions">
-                        <button type="button" className="btn indigoBtn">新增使用者資料</button>
+                        <button type="button" className="btn forestBtn">新增使用者資料</button>
                         <button type="button" className="btn scarletBtn" onClick={getList}>搜尋</button>
                     </div>
                 </div>
-                <PageTable list={list} />
+                <PageTable titles={titles} list={list} />
             </div>
         </div>
     );

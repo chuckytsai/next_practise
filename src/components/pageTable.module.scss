@@ -25,17 +25,6 @@
     tbody {
         td {
             height: 3em;
-
-            .btns {
-                width: calc(100% - 10px); //減回每個表格的padding-left
-                display: flex;
-                justify-content: center;
-
-                button {
-                    margin: 0 5px;
-                }
-            }
-
         }
     }
 }

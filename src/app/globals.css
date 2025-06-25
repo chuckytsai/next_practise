@@ -84,6 +84,15 @@ body {
   }
 }
 
+.forestBtn {
+  color: white;
+  background-color: #00bfa5;
+
+  &:hover {
+    background-color: #096a5d;
+  }
+}
+
 .listContent {
   width: 99.5%;
   display: flex;
@@ -136,7 +145,7 @@ body {
       .functions {
 
         .btn {
-          margin: 0 5px;
+          margin-left: 10px;
         }
       }
     }

@@ -9,6 +9,7 @@ import mail from "/public/iconSvg/mail.svg";
 import lock from "/public/iconSvg/lock.svg";
 import eyes from "/public/iconSvg/eyes.svg";
 import style from "./login.module.scss";
+import { getLogin } from "@/services/login";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -18,10 +19,19 @@ export default function LoginPage() {
     const togglePassword = () => setIsPSD((prev) => !prev);
 
     // 處理登入邏輯，例如呼叫 API 等
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // 阻止重新整理或跳頁
-        setErr("表單送出！");
-        router.push("/dashboard"); // 替換成你想跳的路由
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get("email") as string;
+        const psd = formData.get("psd") as string;
+        getLogin({
+            email: email,
+            psd: psd
+        }).then(res => {
+            if (res.data.code == 200) {
+                router.push("/dashboard");
+            }
+        }).catch(err => setErr(err.status));
     };
 
     return (

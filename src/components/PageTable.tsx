@@ -1,6 +1,13 @@
 import styled from "./pageTable.module.scss";
 
-interface PageTableProps<T = []> {
+export interface Title<T> {
+    label: string;
+    value: string;
+    render?: (row: T) => React.ReactNode;
+};
+
+export interface PageTableProps<T> {
+    titles: Title<T>[];
     list: T[];                 // 資料清單
     total?: number;            // 總筆數
     loading?: boolean;         // 載入中狀態
@@ -9,32 +16,27 @@ interface PageTableProps<T = []> {
     onPageChange?: (page: number) => void; // 分頁事件
 };
 
-export default function PageTable({ list }: PageTableProps) {
-
+export default function PageTable<T>({
+    titles,
+    list
+}: PageTableProps<T>) {
     return (
         <table className={styled.table}>
             <thead>
                 <tr>
-                    <th>帳號</th>
-                    <th>職位權限</th>
-                    <th>使用者</th>
-                    <th>操作</th>
+                    {titles.map((item, i) => (<th key={i}>{item.label}</th>))}
                 </tr>
             </thead>
             <tbody>
-                {list.map((_, i) => {
-                    return (<tr key={i}>
-                        <td>system1</td>
-                        <td>管理者</td>
-                        <td>系統1</td>
-                        <td>
-                            <div className={styled.btns}>
-                                <button type="button" className="btn indigoBtn">編輯</button>
-                                <button type="button" className="btn scarletBtn">刪除</button>
-                            </div>
-                        </td>
-                    </tr>)
-                })}
+                {list.map((row, rowIndex) => (
+                    <tr key={rowIndex}>
+                        {titles.map((col, colIndex) => (
+                            <td key={colIndex}>
+                                {col.render ? col.render(row) : String(row[col.value as keyof T] ?? "-")}
+                            </td>
+                        ))}
+                    </tr>
+                ))}
             </tbody>
         </table>
     )

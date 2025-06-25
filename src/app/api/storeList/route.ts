@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  await new Promise(resolve => setTimeout(resolve, 1000));
   return NextResponse.json(
     {
       code: 200,
@@ -14,11 +15,11 @@ export async function GET() {
         },
         {
           id: "2a",
-          user_account: "system2",
-          user_group: 0,
-          user_name: "系統2"
+          user_account: "system22",
+          user_group: 1,
+          user_name: "系統22"
         }
       ]
     }
   );
-}
+};
